@@ -1,0 +1,4 @@
+output_images/*
+!/output_images/readme.md
+source_images/*
+!/source_images/readme.md
