@@ -73,17 +73,19 @@ def convert_images():
                     #check if images are in a landscape or a portrait format:
                     if get_image_orientation(w,h):
                         #landscape resize
-                        height_percent = (target_size / float(h))
-                        width_size = int( float(w) * float(height_percent))
-                        image = resize_image(image, width_size, target_size)
+                        if w != target_size:
+                            height_percent = (target_size / float(h))
+                            width_size = int( float(w) * float(height_percent))
+                            image = resize_image(image, width_size, target_size)
                         
                     else:
                         #portrait resize
-                        width_percent = (target_size / float(w))
-                        height_size = int( float(h) * float(width_percent))
-                        image = resize_image(image, target_size, height_size)
-                        pass
-
+                        if h != target_size:
+                            width_percent = (target_size / float(w))
+                            height_size = int( float(h) * float(width_percent))
+                            image = resize_image(image, target_size, height_size)
+                    
+                    print(f'Converted {image_name} and saved in: {parent_folder}')
                     # Save image
                     image.save(output_path+'/'+image_name+ '.webp', 'webp', optimize=True, quality=quality)
                     pass
